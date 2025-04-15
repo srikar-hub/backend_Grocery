@@ -22,7 +22,7 @@ setupSwagger(app);
 // Start Server
 app.listen(PORT, async () => {
   try {
-    await db.sequelize.authenticate();
+    await sequelize.sync();
     console.log("Database connected successfully!");
   } catch (error) {
     console.error("Error connecting to database:", error);
