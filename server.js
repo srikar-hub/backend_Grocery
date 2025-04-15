@@ -2,10 +2,9 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const db = require("./models"); // Import database models
 const app = express();
 const PORT = process.env.PORT || 3000;
-const sequelize = require("./models/index");
+const { sequelize } = require("./models");
 const userAuth = require("./routes/userAuth");
 const user = require("./models/user");
 const { setup } = require("swagger-ui-express");
