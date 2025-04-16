@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { User } = require("../models");
+const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -51,10 +51,14 @@ router.post("/register", async (req, res) => {
       name,
     });
 
-    res
-      .status(201)
-      .json({ message: "User registered successfully", userId: newUser.id });
+    res.status(201).json({
+      message: "User registered successfully",
+      userId: newUser.id,
+      userName: newUser.name
+    });
+    
   } catch (error) {
+    console.error("❌ Registration Error:", error); // Add this line
     res.status(500).json({ error: "Registration failed" });
   }
 });
@@ -121,3 +125,5 @@ router.post("/login", async (req, res) => {
 });
 
 module.exports = router;
+
+
